@@ -1,0 +1,54 @@
+!DOCTYPE html>
+<html lang="vi">
+<head<>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Tài Xỉu</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f0f0f0;
+    }
+    .dice {
+      font-size: 80px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    #result {
+      font-size: 24px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Game Tài Xỉu Online</h1>
+  <div class="dice" id="dice">🎲 🎲 🎲</div>
+  <button onclick="rollDice()">Gieo Xúc Xắc</button>
+  <div id="result"></div>
+
+  <script>
+    function rollDice() {
+      const dice1 = Math.floor(Math.random() * 6) + 1;
+      const dice2 = Math.floor(Math.random() * 6) + 1;
+      const dice3 = Math.floor(Math.random() * 6) + 1;
+      const total = dice1 + dice2 + dice3;
+
+      const emojis = ["", "⚀", "⚁", "⚂", "⚃", "⚄", "⚅"];
+      document.getElementById("dice").innerHTML = `${emojis[dice1]} ${emojis[dice2]} ${emojis[dice3]}`;
+
+      let resultText = `Tổng: ${total} → `;
+      if (total >= 11 && total <= 17) resultText += "<strong>Tài</strong>";
+      else if (total >= 4 && total <= 10) resultText += "<strong>Xỉu</strong>";
+      else resultText += "Kết quả không hợp lệ!";
+
+      document.getElementById("result").innerHTML = resultText;
+    }
+  </script>
+</body>
+</html>
